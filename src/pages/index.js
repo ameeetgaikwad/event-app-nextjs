@@ -18,11 +18,48 @@ export default function Home() {
       <header></header>
       <nav>
         <img />
-        <a href="">Events</a>
-        <a href="">Home</a>
-        <a href="">About Us</a>
+        <a href="/">Home</a>
+        <a href="/events">Events</a>
+        <a href="/aboutUs">About Us</a>
       </nav>
-      <main className={styles.main}></main>
+      <main className={styles.main}>
+        <a href="">
+          <div>
+            <img src="" alt="" />
+            <h2>Events in London</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos,
+              similique laborum, exercitationem qui rem quod ea assumenda
+              dolores doloribus iste consequuntur deserunt facere! Doloribus
+              itaque accusantium ratione eveniet iste provident.
+            </p>
+          </div>
+        </a>
+        <a href="">
+          <div>
+            <img src="" alt="" />
+            <h2>Events in San Francisco</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos,
+              similique laborum, exercitationem qui rem quod ea assumenda
+              dolores doloribus iste consequuntur deserunt facere! Doloribus
+              itaque accusantium ratione eveniet iste provident.
+            </p>
+          </div>
+        </a>
+        <a href="">
+          <div>
+            <img src="" alt="" />
+            <h2>Events in San Bacelona</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos,
+              similique laborum, exercitationem qui rem quod ea assumenda
+              dolores doloribus iste consequuntur deserunt facere! Doloribus
+              itaque accusantium ratione eveniet iste provident.
+            </p>
+          </div>
+        </a>
+      </main>
     </>
   );
 }
