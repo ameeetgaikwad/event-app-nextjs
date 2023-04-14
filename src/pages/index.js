@@ -5,7 +5,7 @@ import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Head>
@@ -15,51 +15,33 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header></header>
-      <nav>
-        <img />
-        <a href="/">Home</a>
-        <a href="/events">Events</a>
-        <a href="/aboutUs">About Us</a>
-      </nav>
+      <header>
+        <nav>
+          <img />
+          <a href="/">Home</a>
+          <a href="/events">Events</a>
+          <a href="/aboutUs">About Us</a>
+        </nav>
+      </header>
+
       <main className={styles.main}>
-        <a href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in London</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos,
-              similique laborum, exercitationem qui rem quod ea assumenda
-              dolores doloribus iste consequuntur deserunt facere! Doloribus
-              itaque accusantium ratione eveniet iste provident.
-            </p>
-          </div>
-        </a>
-        <a href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in San Francisco</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos,
-              similique laborum, exercitationem qui rem quod ea assumenda
-              dolores doloribus iste consequuntur deserunt facere! Doloribus
-              itaque accusantium ratione eveniet iste provident.
-            </p>
-          </div>
-        </a>
-        <a href="">
-          <div>
-            <img src="" alt="" />
-            <h2>Events in San Bacelona</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos,
-              similique laborum, exercitationem qui rem quod ea assumenda
-              dolores doloribus iste consequuntur deserunt facere! Doloribus
-              itaque accusantium ratione eveniet iste provident.
-            </p>
-          </div>
-        </a>
+        {data.map((ev) => (
+          <a key={ev.id} href={`/events/${ev.id}`}>
+            <Image width={200} height={200} alt={ev.title} src={ev.image} />
+            <h2>{ev.title}</h2>
+            <p>{ev.description}</p>
+          </a>
+        ))}
       </main>
     </>
   );
+}
+export async function getServerSideProps() {
+  const { events_categories } = await import("../../data/data.json");
+
+  return {
+    props: {
+      data: events_categories,
+    },
+  };
 }
