@@ -9,3 +9,22 @@ function EventPage() {
 }
 
 export default EventPage;
+
+export async function getStaticPaths() {
+  const data = await import("../../../../data/data.json");
+  const { allEvents } = data;
+  console.log("alleventsslfsfs", allEvents);
+  const allPaths = allEvents.map((path) => {
+    return {
+      params: {
+        cat: path.city,
+        id: path.id,
+      },
+    };
+  });
+
+  return {
+    paths: allPaths,
+    fallback: false,
+  };
+}
