@@ -1,9 +1,12 @@
+import Image from "next/image";
 import React from "react";
 
-function EventPage() {
+function EventPage({ data }) {
   return (
     <div>
-      <h1>Our single event</h1>
+      <Image src={data.image} width={900} height={500} alt={data.title} />
+      <h1>{data.title}</h1>
+      <p>{data.description}</p>
     </div>
   );
 }
@@ -13,7 +16,7 @@ export default EventPage;
 export async function getStaticPaths() {
   const data = await import("../../../../data/data.json");
   const { allEvents } = data;
-  console.log("alleventsslfsfs", allEvents);
+
   const allPaths = allEvents.map((path) => {
     return {
       params: {
@@ -26,5 +29,15 @@ export async function getStaticPaths() {
   return {
     paths: allPaths,
     fallback: false,
+  };
+}
+
+export async function getStaticProps(context) {
+  const { allEvents } = await import("../../../../data/data.json");
+  const id = context.params.id;
+  const eventData = allEvents.find((ev) => ev.id == id);
+  console.log("eventDataFilter", eventData);
+  return {
+    props: { data: eventData },
   };
 }
