@@ -33,10 +33,9 @@ export async function getStaticPaths() {
     };
   });
 
-  console.log(allPaths);
   return {
     paths: allPaths,
-    fallback: false,
+    fallback: true,
   };
 }
 
